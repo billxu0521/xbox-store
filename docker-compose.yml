@@ -3,12 +3,12 @@ services:
   api:
     build: ./api
     container_name: api
-    ports:
-     - "3000:3031"
+    #ports:
+    # - "3000:3031"
     restart: always
   web:
     build: ./web
     container_name: web
-    ports:
-     - "3030:3030"
+    #ports:
+    # - "3030:3030"
     restart: always
