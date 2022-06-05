@@ -5,8 +5,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-PORT=3031
-EXPOSE $PORT
+
 #EXPOSE 3031
 #CMD npm config set cache-min 9999999 && npm install --only=production && npm start
 #CMD npm install && npm run dev
