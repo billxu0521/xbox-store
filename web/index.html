@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover" />
+
+    <!-- <base href="http://localhost:3030/" /> -->
+    <base href="http://localhost:3030/" />
+
+    <link rel="preconnect" href="https://www.dolarsi.com" />
+    <link rel="preconnect" href="https://api.xstoregames.com" />
+    <link rel="preconnect" href="https://store-images.s-microsoft.com" />
+    <link rel="preconnect" href="https://media.rawg.io/" />
+
+    <link rel="preload" as="fetch" href="https://www.dolarsi.com/api/api.php?type=valoresprincipales" crossorigin="anonymous" />
+    <link rel="preload" as="fetch" href="http://localhost:3000/api/games?list=new&skipitems=0&store=TW" crossorigin="anonymous" />
+    <link rel="preload" as="fetch" href="http://localhost:3000/api/games?list=deals&skipitems=0&store=TW" crossorigin="anonymous" />
+    <link rel="preload" as="fetch" href="http://localhost:3000/api/games?list=coming&skipitems=0&store=TW" crossorigin="anonymous" />
+    <link rel="preload" as="fetch" href="http://localhost:3000/api/games?list=best&skipitems=0&&store=TW" crossorigin="anonymous" />
+    <link rel="preload" as="fetch" href="http://localhost:3000/api/games?list=free&skipitems=0&store=TW" crossorigin="anonymous" />
+    <link rel="preload" as="fetch" href="http://localhost:3000/api/games?list=most&skipitems=0&store=TW" crossorigin="anonymous" />
+
+    <link rel="modulepreload" href="./src/js/web-components.js" />
+    <link rel="modulepreload" href="./src/js/utils.js" />
+    <link rel="modulepreload" href="./src/js/templates.js" />
+    <link rel="modulepreload" href="./src/js/app.js" />
+    <link rel="modulepreload" href="./src/js/swipes.js" />
+
+    <link id="preloadLCP" rel="preload" as="image" />
+
+    <link rel="stylesheet" href="./src/styles.css" />
+
+    <title>XStore: La tienda argenta de Xbox</title>
+
+    <link rel="shortcut icon" href="./src/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="./src/assets/favicon.png" />
+
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="XStore">
+    <meta name="theme-color" content="#107C10">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="./src/assets/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+
+    <meta name="description" content="Explora la amplia colección de títulos de videojuegos en el catálogo de juegos de Xbox. Busca los éxitos de taquilla favoritos, las ofertas y nuevos lanzamientos en precios argentinos." />
+    <meta name="keywords" content="Xbox Series X, Xbox One, xbox live, ofertas con gold, juegos con gold, próximos juegos de xbox, nuevos juegos en xbox, nuevos juegos, videojuegos, catálogo de juegos de xbox, próximos juegos de xbox, nuevos juegos en xbox, nuevos juegos, videojuegos" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://xstoregames.com" />
+    <meta property="og:title" content="XStore: La tienda argenta de Xbox" />
+    <meta property="og:description" content="Explora la amplia colección de títulos de videojuegos en el catálogo de juegos de Xbox. Busca los éxitos de taquilla favoritos, las ofertas y nuevos lanzamientos en precios argentinos." />
+    <meta property="og:image" content="https://xstoregames.com/src/assets/Xbox_store_new.jpeg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="xstoregames.com" />
+    <meta property="twitter:url" content="https://xstoregames.com" />
+    <meta name="twitter:title" content="XStore: La tienda argenta de Xbox" />
+    <meta name="twitter:description" content="Explora la amplia colección de títulos de videojuegos en el catálogo de juegos de Xbox. Busca los éxitos de taquilla favoritos, las ofertas y nuevos lanzamientos en precios argentinos." />
+    <meta name="twitter:image" content="https://xstoregames.com/src/assets/Xbox_store_new.jpeg" />
+
+    <link rel="manifest" href="./manifest.json" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a href="/">
+          <img src="./src/assets/favicon.png" width="25px" height="25px" alt="" />
+          XStore
+        </a>
+      </h1>
+
+      <button
+        is="install-button"
+        id="install-btn"
+        class="header-btn install-btn"
+        aria-label="安裝"
+        hidden
+      >
+        <span>
+          <svg width="16" height="16" viewBox="0 0 38 38" fill="#fff" aria-hidden="true"><path class="clr-i-outline clr-i-outline-path-1" d="M31 8h-4a1 1 0 0 0 0 2h4v20H5V10h4a1 1 0 0 0 0-2H5a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h26a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2Z"/><path class="clr-i-outline clr-i-outline-path-2" d="m10 19 7 7a1 1 0 0 0 2 0l7-7a1 1 0 0 0-2-2l-5 6V4a1 1 0 0 0-2 0v19l-5-6a1 1 0 0 0-2 2Z"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+          安裝
+        </span>
+      </button>
+
+      <button
+        is="back-button"
+        id="page-back-btn"
+        class="page-back-btn header-btn"
+        aria-label="返回"
+        hidden
+      >
+        <svg width="19" height="19" fill="none" aria-hidden="true"><path d="M18 9.5H1M9.5 18 1 9.5 9.5 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <button
+        is="share-button"
+        id="share-btn"
+        class="share-btn header-btn"
+        aria-label="分享"
+        hidden
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="m17.5 7.5-5-5a.7.7 0 0 0-1 0l-5 5c-.3.3-.3.7 0 1s.7.3 1 0l3.8-3.7V15a.8.8 0 0 0 1.5 0V4.8l3.7 3.7a.7.7 0 0 0 1 0c.3-.3.3-.7 0-1z"/><path d="M19.7 22H4.3C3 22 2 21 2 19.6V14a.8.8 0 0 1 1.5 0v5.7c0 .4.4.7.8.7h15.4c.4 0 .8-.3.8-.7V14a.8.8 0 0 1 1.5 0v5.7c0 1.2-1 2.2-2.3 2.2z"/></svg>
+      </button>
+
+      <button
+        is="switch-button"
+        id="fav-btn"
+        class="fav-btn header-btn"
+        aria-label="最愛"
+        hidden
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff"><path d="M12 21.6C9.4 21.6 2 15 2 8.5c0-3 2.5-5.8 5.4-5.8 2.2 0 3.8 1.6 4.6 2.8.8-1.2 2.4-2.8 4.6-2.8 3 0 5.4 2.7 5.4 5.8 0 6.4-7.4 13-10 13.1z"/></svg>
+      </button>
+
+      <x-toggle-collapse id="search-collapse">
+        <button class="search-btn header-btn" aria-label="Buscar" slot="trigger">
+          <svg width="25" height="25" aria-hidden="true" viewBox="0 0 32 32" fill="#fff"><path d="M13 3a10 10 0 1 0 6.3 17.7l6 6a1 1 0 1 0 1.4-1.4l-6-6A10 10 0 0 0 13 3zm0 2a8 8 0 1 1 0 16 8 8 0 1 1 0-16z"/></svg>
+        </button>
+        <form id="search" class="search" action="/search" slot="content" hidden>
+          <label for="query">Buscar</label>
+          <input type="search" id="query" name="q" placeholder="Buscar juegos...">
+          <button type="submit" aria-label="Buscar">
+            <svg width="20" height="20" viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M13 3a10 10 0 1 0 6.3 17.7l6 6a1 1 0 1 0 1.4-1.4l-6-6A10 10 0 0 0 13 3zm0 2a8 8 0 1 1 0 16 8 8 0 1 1 0-16z"/></svg>
+          </button>
+        </form>
+      </x-toggle-collapse>
+    </header>
+
+    <main>
+      <x-loader></x-loader>
+
+      <div class="home" hidden></div>
+
+      <div class="gamepass list age" hidden>
+        <div class="gamepass-content page-content"></div>
+      </div>
+
+      <div class="wish list page page-fixed" hidden>
+        <notification-prompt hidden></notification-prompt>
+        <div class="wish-content page-content"></div>
+      </div>
+
+      <div class="news page page-fixed" hidden>
+        <div class="news-content page-content"></div>
+      </div>
+
+      <div class="collection list page" hidden>
+        <div class="collection-content page-content"></div>
+      </div>
+
+      <div class="results list page" hidden>
+        <div class="results-content page-content"></div>
+      </div>
+
+      <div class="detail page" hidden>
+        <div class="detail-content page-content"></div>
+      </div>
+    </main>
+
+    <footer>
+      <nav>
+        <ul>
+          <li>
+            <a id="home" href="/" class="home-btn footer-btn" aria-label="Inicio">
+              <svg width="28" height="28" viewBox="0 0 980 980" aria-hidden="true" fill="#fff"><path d="M53 897c24 15 55 12 76-7 0 0 117-101 152-129 11-9 25-14 39-14h345c14 0 27 5 38 14 35 28 153 129 153 129 20 19 52 22 75 7 78-52 53-190 34-267-16-64-38-126-64-187-37-89-118-203-232-179-11 3-24 10-33 15-9 6-20 9-31 9h-73V118a40 40 0 1 0-80 0v170h-72c-11 0-22-3-32-9-9-5-22-12-33-15-113-24-195 90-232 179-25 61-47 123-63 187-19 77-45 215 33 267zm680-522a44 44 0 1 1 0 87 44 44 0 0 1 0-87zM630 502a44 44 0 1 1 0 87 44 44 0 0 1 0-87zm-432-49h51v-50a30 30 0 1 1 60 0v50h50a30 30 0 1 1 0 60h-50v51a30 30 0 1 1-60 0v-51h-51a30 30 0 1 1 0-60z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a id="wishlist" href="/wishlist" class="link wish-btn footer-btn" aria-label="Favoritos">
+              <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="M12 21.6C9.4 21.6 2 15 2 8.5c0-3 2.5-5.8 5.4-5.8 2.2 0 3.8 1.6 4.6 2.8.8-1.2 2.4-2.8 4.6-2.8 3 0 5.4 2.7 5.4 5.8 0 6.4-7.4 13-10 13.1z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a id="news" href="/news" class="link news-btn footer-btn" aria-label="Noticias">
+              <svg width="28" height="28" viewBox="-5 -5 32 32" aria-hidden="true" fill="#fff"><path d="M19.2 24C19.2 13.5 10.5 4.8 0 4.8V0c13.2 0 24 10.8 24 24h-4.8zm-16-6.6a3.3 3.3 0 1 1 0 6.6 3.3 3.3 0 0 1 0-6.6zM16 24h-4.7c0-6.2-5-11.2-11.2-11.2V8A16 16 0 0 1 16 24z"/></svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GTM4ELWW90', {
+        storage: 'none',
+        anonymize_ip: true,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+      });
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GTM4ELWW90';
+      s.async = 1;
+      s.type='text/partytown';
+      var m = document.getElementsByTagName('script')[0];
+      m.parentNode.insertBefore(s,m);
+    </script>
+
+    <script>
+      window.requestIdleCallback = window.requestIdleCallback || function (cb) {
+        var start = Date.now();
+        return setTimeout(function () {
+          cb({
+            didTimeout: false,
+            timeRemaining: function () {
+              return Math.max(0, 50 - (Date.now() - start));
+            }
+          });
+        }, 1);
+      };
+      window.addEventListener('load', function() {
+        requestIdleCallback(() => {
+          window.partytown = {
+            forward: ['dataLayer.push', 'gtag'],
+          };
+          /* Inlined Partytown Snippet */
+          !function(t,e,n,i,r,o,a,d,s,c,p,l){function u(){l||(l=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(w,1e4),e.addEventListener("pt0",f),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):w())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.5.4":"sandbox-sw.html?"+Date.now()),e.body.appendChild(c)}function w(t,n){for(f(),t=0;t<s.length;t++)(n=e.createElement("script")).innerHTML=s[t].innerHTML,e.head.appendChild(n);c&&c.parentNode.removeChild(c)}function f(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){p=t,e.split(".").map((function(e,n,i){p=p[i[n]]=n+1<i.length?"push"==i[n+1]?[]:p[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);
+        });
+      });
+
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker
+          .register('./sw.js', { scope: '/' })
+          .then((reg) => {
+            console.log('Registration succeeded. Scope is ' + reg.scope);
+          }).catch((error) => {
+            console.log('Registration failed with ' + error);
+          });
+
+        bs();
+      };
+
+      async function bs() {
+        if (!navigator.permissions) { return; }
+
+        const registration = await navigator.serviceWorker.ready;
+        const status = await navigator.permissions.query({
+          name: 'periodic-background-sync',
+        });
+        if (status.state === 'granted') {
+          await registration.periodicSync.register('check-deals', {
+            // An interval of one day.
+            minInterval: 24 * 60 * 60 * 1000,
+          });
+        }
+      }
+    </script>
+    <script>
+      // custom-elements: https://unpkg.com/@ungap/custom-elements@1.0.2/es.js
+      !function(){"use strict";var e=Promise,t=(e,t)=>{const n=e=>{for(let t=0,{length:n}=e;t<n;t++)r(e[t])},r=({target:e,attributeName:t,oldValue:n})=>{e.attributeChangedCallback(t,n,e.getAttribute(t))};return(o,l)=>{const{observedAttributes:s}=o.constructor;return s&&e(l).then((()=>{new t(n).observe(o,{attributes:!0,attributeOldValue:!0,attributeFilter:s});for(let e=0,{length:t}=s;e<t;e++)o.hasAttribute(s[e])&&r({target:o,attributeName:s[e],oldValue:null})})),o}};const n=!0,r=!1,o="querySelectorAll";function l(e){this.observe(e,{subtree:n,childList:n})}const s="querySelectorAll",{document:c,Element:a,MutationObserver:i,Set:u,WeakMap:f}=self,d=e=>s in e,{filter:h}=[];var g=e=>{const t=new f,g=(n,r)=>{let o;if(r)for(let l,s=(e=>e.matches||e.webkitMatchesSelector||e.msMatchesSelector)(n),c=0,{length:a}=y;c<a;c++)s.call(n,l=y[c])&&(t.has(n)||t.set(n,new u),o=t.get(n),o.has(l)||(o.add(l),e.handle(n,r,l)));else t.has(n)&&(o=t.get(n),t.delete(n),o.forEach((t=>{e.handle(n,r,t)})))},p=(e,t=!0)=>{for(let n=0,{length:r}=e;n<r;n++)g(e[n],t)},{query:y}=e,m=e.root||c,w=((e,t,s)=>{const c=(t,r,l,s,a)=>{for(let i=0,{length:u}=t;i<u;i++){const u=t[i];(a||o in u)&&(s?r.has(u)||(r.add(u),l.delete(u),e(u,s)):l.has(u)||(l.add(u),r.delete(u),e(u,s)),a||c(u[o]("*"),r,l,s,n))}},a=new(s||MutationObserver)((e=>{for(let t=new Set,o=new Set,l=0,{length:s}=e;l<s;l++){const{addedNodes:s,removedNodes:a}=e[l];c(a,t,o,r,r),c(s,t,o,n,r)}}));return a.add=l,a.add(t||document),a})(g,m,i),{attachShadow:b}=a.prototype;return b&&(a.prototype.attachShadow=function(e){const t=b.call(this,e);return w.add(t),t}),y.length&&p(m[s](y)),{drop:e=>{for(let n=0,{length:r}=e;n<r;n++)t.delete(e[n])},flush:()=>{const e=w.takeRecords();for(let t=0,{length:n}=e;t<n;t++)p(h.call(e[t].removedNodes,d),!1),p(h.call(e[t].addedNodes,d),!0)},observer:w,parse:p}};const{document:p,Map:y,MutationObserver:m,Object:w,Set:b,WeakMap:E,Element:v,HTMLElement:S,Node:M,Error:O,TypeError:A,Reflect:N}=self,q=self.Promise||e,{defineProperty:C,keys:T,getOwnPropertyNames:D,setPrototypeOf:L}=w;let P=!self.customElements;const $=e=>{const t=T(e),n=[],{length:r}=t;for(let o=0;o<r;o++)n[o]=e[t[o]],delete e[t[o]];return()=>{for(let o=0;o<r;o++)e[t[o]]=n[o]}};if(P){const{createElement:n}=p,r=new y,o=new y,l=new y,s=new y,c=[],a=(e,t,n)=>{const r=l.get(n);if(t&&!r.isPrototypeOf(e)){const t=$(e);u=L(e,r);try{new r.constructor}finally{u=null,t()}}const o=(t?"":"dis")+"connectedCallback";o in r&&e[o]()},{parse:i}=g({query:c,handle:a});let u=null;const f=t=>{if(!o.has(t)){let n,r=new e((e=>{n=e}));o.set(t,{$:r,_:n})}return o.get(t).$},d=t(f,m);function h(){const{constructor:e}=this;if(!r.has(e))throw new A("Illegal constructor");const t=r.get(e);if(u)return d(u,t);const o=n.call(p,t);return d(L(o,e.prototype),t)}C(self,"customElements",{configurable:!0,value:{define:(e,t)=>{if(s.has(e))throw new O(`the name "${e}" has already been used with this registry`);r.set(t,e),l.set(e,t.prototype),s.set(e,t),c.push(e),f(e).then((()=>{i(p.querySelectorAll(e))})),o.get(e)._(t)},get:e=>s.get(e),whenDefined:f}}),C(h.prototype=S.prototype,"constructor",{value:h}),C(self,"HTMLElement",{configurable:!0,value:h}),C(p,"createElement",{configurable:!0,value(e,t){const r=t&&t.is,o=r?s.get(r):s.get(e);return o?new o:n.call(p,e)}}),"isConnected"in M.prototype||C(M.prototype,"isConnected",{configurable:!0,get(){return!(this.ownerDocument.compareDocumentPosition(this)&this.DOCUMENT_POSITION_DISCONNECTED)}})}else try{function e(){return self.Reflect.construct(HTMLLIElement,[],e)}e.prototype=HTMLLIElement.prototype;const t="extends-li";self.customElements.define("extends-li",e,{extends:"li"}),P=p.createElement("li",{is:t}).outerHTML.indexOf(t)<0;const{get:n,whenDefined:r}=self.customElements;C(self.customElements,"whenDefined",{configurable:!0,value(e){return r.call(this,e).then((t=>t||n.call(this,e)))}})}catch(e){P=!P}if(P){const e=self.customElements,{attachShadow:n}=v.prototype,{createElement:r}=p,{define:o,get:l,upgrade:s}=e,{construct:c}=N||{construct(e){return e.call(this)}},a=new E,i=new b,u=new y,f=new y,d=new y,h=new y,w=[],S=[],M=t=>h.get(t)||l.call(e,t),T=(e,t,n)=>{const r=d.get(n);if(t&&!r.isPrototypeOf(e)){const t=$(e);_=L(e,r);try{new r.constructor}finally{_=null,t()}}const o=(t?"":"dis")+"connectedCallback";o in r&&e[o]()},{parse:P}=g({query:S,handle:T}),{parse:k}=g({query:w,handle(e,t){a.has(e)&&(t?i.add(e):i.delete(e),S.length&&x.call(S,e))}}),I=e=>{if(!f.has(e)){let t,n=new q((e=>{t=e}));f.set(e,{$:n,_:t})}return f.get(e).$},H=t(I,m);let _=null;function x(e){const t=a.get(e);P(t.querySelectorAll(this),e.isConnected)}D(self).filter((e=>/^HTML.*Element$/.test(e))).forEach((e=>{const t=self[e];function n(){const{constructor:e}=this;if(!u.has(e))throw new A("Illegal constructor");const{is:n,tag:o}=u.get(e);if(n){if(_)return H(_,n);const t=r.call(p,o);return t.setAttribute("is",n),H(L(t,e.prototype),n)}return c.call(this,t,[],e)}L(n,t),C(n.prototype=t.prototype,"constructor",{value:n}),C(self,e,{value:n})})),C(p,"createElement",{configurable:!0,value(e,t){const n=t&&t.is;if(n){const t=h.get(n);if(t&&u.get(t).tag===e)return new t}const o=r.call(p,e);return n&&o.setAttribute("is",n),o}}),n&&(v.prototype.attachShadow=function(e){const t=n.call(this,e);return a.set(this,t),t}),C(e,"get",{configurable:!0,value:M}),C(e,"whenDefined",{configurable:!0,value:I}),C(e,"upgrade",{configurable:!0,value(t){const n=t.getAttribute("is");if(n){const e=h.get(n);if(e)return void H(L(t,e.prototype),n)}s.call(e,t)}}),C(e,"define",{configurable:!0,value(t,n,r){if(M(t))throw new O(`'${t}' has already been defined as a custom element`);let l;const s=r&&r.extends;u.set(n,s?{is:t,tag:s}:{is:"",tag:t}),s?(l=`${s}[is="${t}"]`,d.set(l,n.prototype),h.set(t,n),S.push(l)):(o.apply(e,arguments),w.push(l=t)),I(t).then((()=>{s?(P(p.querySelectorAll(l)),i.forEach(x,[l])):k(p.querySelectorAll(l))})),f.get(t)._(n)}})}}();
+    </script>
+    <script type="module" src="./src/js/web-components.js"></script>
+    <script type="module" src="./src/js/app.js"></script>
+  </body>
+</html>
