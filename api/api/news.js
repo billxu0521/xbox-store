@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   try {
     // const feed = await axios.get('https://latam.ign.com/xbox.xml')
     // const feed = await axios.get('https://www.somosxbox.com/feed')
-    const feed = await axios.get('https://news.xbox.com/es-latam/feed/')
+    const feed = await axios.get('https://news.xbox.com/en-us/feed/')
       .then(res => res.data)
       .catch(err => { throw { error: err.response.data.error }; });
     const result = await parseStringPromise(feed);
@@ -15,6 +15,8 @@ module.exports = async (req, res) => {
       description: n.description[0],
       link: n.link[0],
     }));
+
+    res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate');
     return res.status(200).json(news);
   } catch {
     return res.status(200).json({});

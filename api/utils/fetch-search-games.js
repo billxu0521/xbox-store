@@ -1,14 +1,15 @@
 const axios = require('axios');
 const fetchGamesDetail = require('./fetch-games-detail');
 
-const API_URL = 'https://www.microsoft.com/services/api/v3/suggest';
+const API_URL = 'https://www.microsoft.com/msstoreapiprod/api/autosuggest';
 
 function fetchSearchGames(query, store, lang) {
   return axios.get(`${API_URL}`, { params: {
     market: `${lang}-${store}`,
     clientId: '7F27B536-CF6B-4C65-8638-A0F8CBDFCA65',
     sources: 'DCatAll-Products',
-    counts: '10,0,0',
+    filter: '+ClientType:StoreWeb',
+    counts: '5,0,0',
     query,
   }})
   .then(response => response.data.ResultSets[0])
