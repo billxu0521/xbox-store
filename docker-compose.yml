@@ -2,13 +2,15 @@ version: '3'
 services:
   api:
     build: ./api
-    container_name: api
+    #image: billxuregistry.azurecr.io/xbox-api
+    container_name: xbox-api
+    platform: linux/amd64
     ports:
-     - "3000:3031"
-    restart: always
+     - "3031:3031"
   # web:
   #   build: ./web
-  #   container_name: web
+  #   #image: billxuregistry.azurecr.io/xbox-web
+  #   container_name: xbox-web
+  #   platform: linux/amd64
   #   ports:
-  #    - "3030:3030"
-  #   restart: always
+  #    - "80:80"

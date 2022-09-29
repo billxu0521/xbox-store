@@ -1,1 +1,1 @@
-# xbox-games-app
+# xbox-store-app

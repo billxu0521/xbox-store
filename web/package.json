@@ -1,34 +1,46 @@
 {
-  "name": "xstore",
-  "version": "1.0.0",
-  "description": "Explora la amplia colección de títulos de videojuegos en el catálogo de juegos de Xbox en precios argentinos (impuestos incluídos)",
-  "main": "index.js",
+  "name": "xbox-web-app",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "dev": "serve -p 3030 --single",
-    "partytown": "partytown copylib ~partytown",
-    "inline": "html-inline --ignore-images --ignore-links --ignore-scripts -i ./index.html -o ./dist/index.html",
-    "minify": "html-minifier-terser --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js '{\"compress\":{\"drop_console\":\"true\"},\"mangle\":{\"toplevel\":\"true\"}}' --output ./dist/index.html ./dist/index.html",
-    "copy": "rm -rf dist && mkdir -p dist && cp -rf ./src ./dist/src",
-    "minify-js": "for filename in ./dist/src/js/*.js; do terser \"${filename}\" --compress --mangle --output \"${filename}\"; done",
-    "dist": "npm run copy && npm run inline && npm run minify && npm run minify-js && node revision-hash.js"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e",
+    "lint": "vue-cli-service lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pazguille/xbox-games-app.git"
+  "dependencies": {
+    "@capacitor/app": "4.0.1",
+    "@capacitor/core": "4.1.0",
+    "@capacitor/haptics": "4.0.1",
+    "@capacitor/keyboard": "4.0.1",
+    "@capacitor/status-bar": "4.0.1",
+    "@ionic/vue": "^6.2.5",
+    "@ionic/vue-router": "^6.2.5",
+    "axios": "^0.27.2",
+    "core-js": "^3.6.5",
+    "ionicons": "^6.0.3",
+    "swiper": "^8.3.2",
+    "vue": "^3.2.21",
+    "vue-router": "^4.0.12",
+    "vue3-lazyload": "^0.3.6"
   },
-  "author": "Guille Paz <guille87paz@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pazguille/xbox-games-app/issues"
-  },
-  "homepage": "http://localhost/",
   "devDependencies": {
-    "@builder.io/partytown": "^0.5.4",
-    "html-inline": "^1.2.0",
-    "html-minifier-terser": "^5.1.1",
-    "replace-in-file": "^6.2.0",
-    "rev-hash": "^3.0.0",
-    "serve": "^13.0.2",
-    "terser": "^5.7.1"
-  }
+    "@capacitor/cli": "4.1.0",
+    "@vue/cli-plugin-babel": "~5.0.0-rc.1",
+    "@vue/cli-plugin-e2e-cypress": "~5.0.0-rc.1",
+    "@vue/cli-plugin-eslint": "~5.0.0-rc.1",
+    "@vue/cli-plugin-router": "~5.0.0-rc.1",
+    "@vue/cli-plugin-unit-jest": "~5.0.0-rc.1",
+    "@vue/cli-service": "~5.0.0-rc.1",
+    "@vue/test-utils": "^2.0.0-rc.16",
+    "@vue/vue3-jest": "^27.0.0-alpha.3",
+    "babel-jest": "^27.3.1",
+    "cypress": "^8.7.0",
+    "eslint": "^8.4.1",
+    "eslint-plugin-vue": "^8.2.0",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7"
+  },
+  "description": "An Ionic project"
 }
