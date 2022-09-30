@@ -15,10 +15,11 @@
     <swiper-slide v-for="(item) in data.gamelistdata"
         :key="item.title">
       <div class="game-card" @click="gameLink(item.id)">
-        <ion-thumbnail class="game-card-box-imgs">
+        <ion-thumbnail class="game-box-thumbnail">
           <span v-if="typeof(item.price.deal)!== 'undefined'" class="game-card-important-tag game-card-price-off">{{item.price.off}}% off</span>
           <span v-if="item.game_pass === true" class="game-card-important-tag game-card-gamepass">Game Pass</span>
-          <img v-lazy="{ src: item.images.boxart.url, loading: defaultimage, error: defaultimage }">
+          <img class="game-box-image" v-if="typeof(item.images.boxart.url)!== 'undefined'" v-lazy="{ src: item.images.boxart.url, loading: defaultimage, error: defaultimage }">
+          <img class="game-box-image" v-else v-lazy="{ src: item.images.boxart[1].url, loading: defaultimage, error: defaultimage }">       
         </ion-thumbnail>
           <ion-subtitle>開發商:{{item.developer}}</ion-subtitle>
           <ion-title>{{item.title}}</ion-title>
@@ -26,7 +27,6 @@
             <ion-text class="game-card-sales-price">
               <s>NT${{item.price.amount}}</s>
             </ion-text >
-            <br />
             <ion-text class="game-card-deals">NT${{item.price.deal}}</ion-text>
           </div>
           <div v-else>
@@ -47,10 +47,10 @@
 import { IonThumbnail} from '@ionic/vue';
 import { ref,reactive,onMounted,defineComponent } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { inject } from 'vue'
 
-import axios from 'axios';
- // Import Swiper styles
- import 'swiper/css';
+// Import Swiper styles
+import 'swiper/css';
 
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -64,6 +64,7 @@ export default defineComponent({
   components: { Swiper,SwiperSlide,IonThumbnail },
   props: ['url'],
   setup(props) {
+    const axios = inject('axios') 
     const defaultimage = 'assets/imgs/default-image.png';
     const data = reactive({
         gamelistdata:[],

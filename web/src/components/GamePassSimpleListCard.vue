@@ -19,7 +19,9 @@
           <span v-if="typeof(item.price.deal)!== 'undefined'" class="game-card-important-tag game-card-price-off">{{item.price.off}}% off</span>
           <span v-if="item.game_pass === true" class="game-card-important-tag game-card-gamepass">Game Pass</span>
           <span v-if="item.ea_play === true" class="game-card-important-tag game-card-eaplay">Ea Play</span>
-          <img v-lazy="{ src: item.images.boxart.url, loading: defaultimage, error: defaultimage }">
+          <img class="game-box-image" v-if="typeof(item.images.boxart.url)!== 'undefined'" v-lazy="{ src: item.images.boxart.url, loading: defaultimage, error: defaultimage }">
+          <img class="game-box-image" v-else v-lazy="{ src: item.images.boxart[1].url, loading: defaultimage, error: defaultimage }">
+          
         </ion-thumbnail>
           <ion-subtitle>開發商:{{item.developer}}</ion-subtitle>
           <ion-title>{{item.title}}</ion-title>
@@ -50,9 +52,9 @@ import { IonThumbnail} from '@ionic/vue';
 import { ref,reactive,onMounted,defineComponent } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
-import axios from 'axios';
- // Import Swiper styles
- import 'swiper/css';
+import { inject } from 'vue'
+// Import Swiper styles
+import 'swiper/css';
 
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -60,12 +62,12 @@ import 'swiper/css/virtual';
 
 import { Pagination, Navigation, Virtual } from 'swiper';
 
-
 export default defineComponent({
   name: 'GameSimpleListCard',
   components: { Swiper,SwiperSlide,IonThumbnail },
   props: ['url'],
   setup(props) {
+    const axios = inject('axios') 
     const defaultimage = 'assets/imgs/default-image.png';
     const data = reactive({
         gamelistdata:[],

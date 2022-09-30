@@ -5,6 +5,7 @@ const search = require('../api/search');
 const news = require('../api/news');
 const videos = require('../api/videos');
 const image = require('../api/image');
+const cors = require('cors');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
 });
+app.use(cors());
 
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 app.get('/api/games', games);

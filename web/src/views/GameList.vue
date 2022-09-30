@@ -70,9 +70,12 @@ export default  {
     const skipitems = 0;
     const store = 'TW'; 
     const lang = 'zh-TW';
+    
     //let url = `http://localhost:3000/api/games?list=${list}&skipitems=${skipitems}&store=${store}&lang=${lang}`;
     let gameLink = function(apilistname) {
-      return `http://localhost:3031/api/games?list=${apilistname}&skipitems=${skipitems}&store=${store}&lang=${lang}`;
+      this.url = "/api"
+      
+      return `/api/games?list=${apilistname}&skipitems=${skipitems}&store=${store}&lang=${lang}`;
     }
     return {
       gameLink,
