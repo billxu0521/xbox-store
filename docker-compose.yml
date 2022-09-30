@@ -7,10 +7,10 @@ services:
     platform: linux/amd64
     ports:
      - "3031:3031"
-  # web:
-  #   build: ./web
-  #   #image: billxuregistry.azurecr.io/xbox-web
-  #   container_name: xbox-web
-  #   platform: linux/amd64
-  #   ports:
-  #    - "80:80"
+  web:
+    build: ./web
+    #image: billxuregistry.azurecr.io/xbox-web
+    container_name: xbox-web
+    platform: linux/amd64
+    ports:
+     - "80:80"

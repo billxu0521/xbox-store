@@ -10,6 +10,7 @@ module.exports = defineConfig({
     // port: "80",
     https: false,
     hot: "only",
+    proxy: "http://docker-node-xbox-store.paas.aiec.nccu.edu.tw/",
     // proxy: {
     //   '/api' : {
     //     target: "http://localhost:3031",
