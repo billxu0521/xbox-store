@@ -37,7 +37,7 @@ const app = createApp(App)
 app.use(VueAxios, axios)
 app.provide('axios', app.config.globalProperties.axios)  // provide 'axios'
 
-axios.defaults.baseURL="http://localhost:3031";
+//axios.defaults.baseURL="http://localhost:3031";
 
 router.isReady().then(() => {
   app.mount('#app');

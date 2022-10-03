@@ -1,16 +1,51 @@
 version: '3'
 services:
+  # Traefik reverse proxy
+  reverse-proxy:
+      image: traefik:alpine
+      restart: on-failure
+      command:
+          - --docker # Tells Traefik to listen to docker
+          - --api    # Enables the web UI
+      ports:
+          - 80:80     # The HTTP port
+          - 9000:8080 # The Web UI (enabled by --api), mapped to port 9000 to resolve conflict with client port
+      labels:
+          - "traefik.port=8080"
+          - "traefik.enable=false"
+      volumes:
+          - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+      networks:
+          - reverse-proxy
   api:
     build: ./api
     #image: billxuregistry.azurecr.io/xbox-api
     container_name: xbox-api
     platform: linux/amd64
-    ports:
-     - "3031:3031"
+    # ports:
+    #  - "3031:3031"
+    expose:
+      - 3031
+    networks:
+      - reverse-proxy
+    labels:
+      - "traefik.frontend.rule=PathPrefix: /api"
+      - "traefik.enable=true"
   web:
     build: ./web
     #image: billxuregistry.azurecr.io/xbox-web
     container_name: xbox-web
     platform: linux/amd64
-    ports:
-     - "80:80"
+    expose:
+      - 3080
+    # ports:
+    #  - "80:80"
+    networks:
+      - reverse-proxy
+    labels:
+      - "traefik.frontend.rule=Host:localhost"
+      - "traefik.enable=true"
+
+networks:
+    reverse-proxy:
+        driver: bridge

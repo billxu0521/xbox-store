@@ -38,15 +38,14 @@ app.use((req, res, next) => {
 app.use(cors());
 
 app.get('/favicon.ico', (req, res) => res.status(204).end());
-app.get('/api/games', games);
-app.get('/api/gamepass', gamepass);
-app.get('/api/search', search);
-app.get('/api/news', news);
-app.get('/api/videos', videos);
-app.get('/api/image(/:path*)?', image);
+app.get('/api/games', cors(corsOptions),games);
+app.get('/api/gamepass', cors(corsOptions),gamepass);
+app.get('/api/search', cors(corsOptions), search);
+app.get('/api/news', cors(corsOptions),news);
+app.get('/api/videos',cors(corsOptions), videos);
+app.get('/api/image(/:path*)?', cors(corsOptions), image);
 app.get('/', cors(corsOptions), (req, res, next) => {
   res.json({ message: 'This route is CORS-enabled for an allowed origin.' });
 });
-
 
 module.exports = app;
