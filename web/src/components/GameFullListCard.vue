@@ -11,7 +11,27 @@
       </ion-toolbar>
     </ion-header>
     <ion-content >
-      <ion-grid>
+      <ion-grid v-if="data.loaded">
+        <ion-row class="ion-justify-content-between">
+          <ion-col class="full-game game-card ion-text-center" size="12" size-md v-for="(item) in 12"
+            :key="item">
+            <ion-thumbnail class="game-box-thumbnail" >
+              <ion-skeleton-text style="height: 40vh;" :animated="true"></ion-skeleton-text>
+            </ion-thumbnail>
+            <div>    
+              <p>
+                <ion-skeleton-text :animated="true" style="width: 100%; "></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text :animated="true" style="width: 30%;"></ion-skeleton-text>
+              </p>        
+              
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid v-if="!data.loaded">
         <ion-row class="ion-justify-content-between">
           <ion-col class="full-game game-card ion-text-center" size="12" size-md v-for="(item) in data.gamelistdata"
             :key="item.title" @click="gameLink(item.id)">
@@ -26,7 +46,6 @@
               <ion-text class="game-card-sales-price " >
                 <s>NT${{item.price.amount}}</s>
               </ion-text >
-              <br />
               <ion-text class="game-card-deals">NT${{item.price.deal}}</ion-text>
             </div>
             <div v-else>
@@ -58,11 +77,12 @@
 
 <script>
 import { 
+  IonSkeletonText,
   IonContent, 
   IonInfiniteScroll, 
   IonInfiniteScrollContent,
   IonBackButton,
-  IonPage 
+  IonPage ,
 } from '@ionic/vue';
 import { ref,reactive,onMounted,defineComponent } from 'vue';
 import { inject } from 'vue'
@@ -71,6 +91,7 @@ import { useRoute } from 'vue-router';
 export default defineComponent({
   name: 'GameFullListCard',
   components: { 
+    IonSkeletonText,
     IonContent, 
     IonInfiniteScroll, 
     IonInfiniteScrollContent,
@@ -91,6 +112,7 @@ export default defineComponent({
     let url = '';
     let data = reactive({
         gamelistdata:[],
+        loaded:true,
     });
     const isDisabled = ref(false);
     const toggleInfiniteScroll = () => {
@@ -104,6 +126,7 @@ export default defineComponent({
             (res.data).forEach(element => {
               console.log(element);
               data.gamelistdata.push(element)
+              data.loaded = false
             });
       })
       skipitems = skipitems + 12;  

@@ -5,12 +5,11 @@ module.exports = defineConfig({
   // ? ''
   // : '',
   devServer: {
-    open: "ture",
+    //open: "ture",
     // host: "0.0.0.0",
     // port: "80",
-    https: false,
-    hot: "only",
-    proxy: "http://docker-node-xbox-store.paas.aiec.nccu.edu.tw/",
+    //https: false,
+    //hot: "only",
     // proxy: {
     //   '/api' : {
     //     target: "http://localhost:3031",

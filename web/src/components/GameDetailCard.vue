@@ -128,7 +128,7 @@ export default defineComponent({
 
     //等基本DOM渲染後再讀資料
     onMounted(() => {
-        const url = `http://localhost:3031/api/games?id=${id}&store=${store}&lang=${lang}`;
+        const url = `/api/games?id=${id}&store=${store}&lang=${lang}`;
         axios.get(url)
           .then((res)=>{
               console.log(res.data)

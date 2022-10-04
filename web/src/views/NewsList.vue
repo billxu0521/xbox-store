@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>NewsList</ion-title>
+        <ion-title>Xbox 遊戲查詢網 新聞列表</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">

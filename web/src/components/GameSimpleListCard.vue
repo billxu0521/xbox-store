@@ -1,5 +1,6 @@
 <template>
-  <swiper :modules="modules"
+  <swiper v-if="data.loaded"
+      :modules="modules"
       :centeredSlides="false"
       :spaceBetween="0"
       :pagination="{
@@ -7,7 +8,35 @@
       }"
       :navigation="true"
       :virtual="true"
-      :loop="true"
+      :loopFillGroupWithBlank="true"
+      :breakpoints="swiperOptions.breakpoints"
+      class="cardswiper"
+      @swiper="setSwiperRef">
+    <swiper-slide v-for="(item) in 10"
+        :key="item">
+      <div class="game-card" >
+          <ion-thumbnail class="game-box-thumbnail" slot="start">
+            <ion-skeleton-text style="height: 50vh;" :animated="true"></ion-skeleton-text>
+          </ion-thumbnail>
+          <div>
+          <ion-text >
+            <ion-skeleton-text :animated="true" style="width: 100%;"></ion-skeleton-text>
+          </ion-text >
+            <ion-skeleton-text :animated="true" style="width: 30%;"></ion-skeleton-text>
+          </div>
+      </div>
+    </swiper-slide>
+  </swiper>
+
+  <swiper v-if="!data.loaded"
+       :modules="modules"
+      :centeredSlides="false"
+      :spaceBetween="0"
+      :pagination="{
+        clickable: true,
+      }"
+      :navigation="true"
+      :virtual="true"
       :loopFillGroupWithBlank="true"
       :breakpoints="swiperOptions.breakpoints"
       class="cardswiper"
@@ -19,7 +48,7 @@
           <span v-if="typeof(item.price.deal)!== 'undefined'" class="game-card-important-tag game-card-price-off">{{item.price.off}}% off</span>
           <span v-if="item.game_pass === true" class="game-card-important-tag game-card-gamepass">Game Pass</span>
           <img class="game-box-image" v-if="typeof(item.images.boxart.url)!== 'undefined'" v-lazy="{ src: item.images.boxart.url, loading: defaultimage, error: defaultimage }">
-          <img class="game-box-image" v-else v-lazy="{ src: item.images.boxart[1].url, loading: defaultimage, error: defaultimage }">       
+          <img class="game-box-image" v-else v-lazy="{ src: item.images.boxart[1].url, loading: defaultimage, error: defaultimage }">     
         </ion-thumbnail>
           <ion-subtitle>開發商:{{item.developer}}</ion-subtitle>
           <ion-title>{{item.title}}</ion-title>
@@ -44,7 +73,7 @@
 </template>
 
 <script >
-import { IonThumbnail} from '@ionic/vue';
+import { IonSkeletonText,IonThumbnail} from '@ionic/vue';
 import { ref,reactive,onMounted,defineComponent } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { inject } from 'vue'
@@ -61,13 +90,15 @@ import { Pagination, Navigation, Virtual } from 'swiper';
 
 export default defineComponent({
   name: 'GameSimpleListCard',
-  components: { Swiper,SwiperSlide,IonThumbnail },
+  components: { IonSkeletonText,Swiper,SwiperSlide,IonThumbnail },
   props: ['url'],
+  
   setup(props) {
     const axios = inject('axios') 
     const defaultimage = 'assets/imgs/default-image.png';
     const data = reactive({
         gamelistdata:[],
+        loaded:true,
     });
     const slides = ref(
       Array.from({ length: 100 }).map((_, index) => `Slide ${index + 1}`)
@@ -110,13 +141,16 @@ export default defineComponent({
       prependNumber -= 2;
       swiperRef.slideTo(swiperRef.activeIndex + 2, 0);
     };
+   
     console.log(props.url)
+    //等基本DOM渲染後再讀資料
     //等基本DOM渲染後再讀資料
     onMounted(() => {
         axios.get(props.url)
           .then((res)=>{
               console.log(res.data)
               data.gamelistdata = res.data
+              data.loaded = false
         })
       });
     

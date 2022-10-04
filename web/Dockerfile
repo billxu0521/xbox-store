@@ -7,10 +7,10 @@ RUN npm install -g @ionic/cli
 
 COPY . .
 
-EXPOSE 80
+EXPOSE 8080
 #EXPOSE 3031
 #CMD npm config set cache-min 9999999 && npm install --only=production && npm start
 #CMD npm install && npm run dev
 
-ENTRYPOINT [ "ionic","serve","--port","80"]
+ENTRYPOINT [ "ionic","serve","--port","8080"]
 #CMD ["node", "/app/index.js"]
